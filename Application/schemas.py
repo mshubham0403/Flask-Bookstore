@@ -9,6 +9,7 @@ class Book:
         self.quantity = quantity
 
     def to_dict(self):
+
         return {
             "book_id": self.book_id,
             "title": self.title,
@@ -17,17 +18,21 @@ class Book:
             "price": self.price,
             "quantity": self.quantity
         }
-
     @classmethod
     def from_dict(cls, data):
-        return cls(
-            book_id=data["book_id"],
-            title=data["title"],
-            author=data["author"],
-            ISBN=data["ISBN"],
-            price=data["price"],
-            quantity=data["quantity"]
-        )
+        
+        try:
+            bookObject =cls(
+                book_id=data["book_id"],
+                title=data["title"],
+                author=data["author"],
+                ISBN=data["ISBN"],
+                price=data["price"],
+                quantity=data["quantity"]
+            )
+            return bookObject
+        except Exception as e:
+            return None
 class User:
     def __init__(self,username,pwd,email):
         self.username = username
@@ -44,11 +49,17 @@ class User:
 
     @classmethod
     def from_dict(cls, data):
-        return cls(
-            username=data["username"],
-            email=data["email"],
-            password=data["password"]
-        )
+        
+        try :
+            userObject =cls(
+                username=data["username"],
+                email=data["email"],
+                password=data["password"]
+             )
+            return userObject
+        except Exception as e:
+            return None
+            
 
 
         
